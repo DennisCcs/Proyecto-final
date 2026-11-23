@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox xmlns="http://javafx.com/javafx/21"
+      xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="pe.edu.upeu.sysvstarbucks.controller.CompraController"
+      spacing="14" style="-fx-background-color: #f5f4f0; -fx-padding: 20 24 20 24;">
+    <VBox spacing="5" style="-fx-background-color: white; -fx-padding: 16; -fx-background-radius: 8;">
+        <Label text="Nueva compra de insumos" style="-fx-font-size: 23px; -fx-font-weight: bold; -fx-text-fill: #1e3932;" />
+        <Label text="Elige los paquetes de insumos del proveedor y registra cuántos se compran."
+               style="-fx-font-size: 13px; -fx-text-fill: #5b625f;" />
+    </VBox>
+
+    <VBox spacing="8" style="-fx-background-color: white; -fx-padding: 14; -fx-background-radius: 8;">
+        <HBox alignment="CENTER_LEFT" spacing="10">
+            <Label text="Proveedor" />
+            <ComboBox fx:id="cmbProveedor" promptText="Selecciona un proveedor" maxWidth="Infinity" HBox.hgrow="ALWAYS" />
+        </HBox>
+        <Label fx:id="lblDatosProveedor" text="Tipo y número de documento: selecciona un proveedor."
+               wrapText="true" style="-fx-font-size: 12px; -fx-text-fill: #5b625f;" />
+    </VBox>
+
+    <GridPane hgap="12" vgap="10" style="-fx-background-color: white; -fx-padding: 16; -fx-background-radius: 8;">
+        <Label text="Paquete de insumo" GridPane.columnIndex="0" GridPane.rowIndex="0" />
+        <ComboBox fx:id="cmbPaquete" promptText="Selecciona un paquete" maxWidth="Infinity"
+                  GridPane.columnIndex="1" GridPane.rowIndex="0" />
+        <Label text="Contenido del paquete" GridPane.columnIndex="2" GridPane.rowIndex="0" />
+        <Label fx:id="lblContenido" text="—" GridPane.columnIndex="3" GridPane.rowIndex="0" />
+        <Label text="Cantidad de paquetes" GridPane.columnIndex="0" GridPane.rowIndex="1" />
+        <TextField fx:id="txtCantidadPaquetes" promptText="Ej. 2" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+        <Label text="Precio por paquete (S/)" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+        <TextField fx:id="txtPrecioPaquete" promptText="Precio registrado del paquete" editable="false" GridPane.columnIndex="3" GridPane.rowIndex="1" />
+        <Label fx:id="lblStockActual" text="Stock actual: —" GridPane.columnIndex="0" GridPane.rowIndex="2" />
+        <Button text="Agregar al carrito" onAction="#agregarAlCarrito"
+                style="-fx-background-color: #F54927; -fx-text-fill: white; -fx-font-weight: bold;"
+                GridPane.columnIndex="3" GridPane.rowIndex="2" />
+        <columnConstraints>
+            <ColumnConstraints minWidth="145" prefWidth="175" />
+            <ColumnConstraints hgrow="ALWAYS" minWidth="170" prefWidth="260" />
+            <ColumnConstraints minWidth="160" prefWidth="195" />
+            <ColumnConstraints hgrow="ALWAYS" minWidth="170" prefWidth="245" />
+        </columnConstraints>
+    </GridPane>
+
+    <TableView fx:id="tablaCarrito" VBox.vgrow="ALWAYS">
+        <columns>
+            <TableColumn fx:id="colPaquete" text="Paquete" prefWidth="190" />
+            <TableColumn fx:id="colInsumo" text="Insumo" prefWidth="170" />
+            <TableColumn fx:id="colContenido" text="Contenido" prefWidth="190" />
+            <TableColumn fx:id="colStock" text="Stock antes" prefWidth="120" />
+            <TableColumn fx:id="colCantidad" text="Paquetes" prefWidth="90" />
+            <TableColumn fx:id="colPrecio" text="P. paquete (S/)" prefWidth="130" />
+            <TableColumn fx:id="colSubtotal" text="Subtotal (S/)" prefWidth="140" />
+        </columns>
+    </TableView>
+
+    <HBox alignment="CENTER_LEFT" spacing="10">
+        <Button text="Quitar seleccionado" onAction="#quitarDelCarrito" />
+        <Button text="Vaciar carrito" onAction="#vaciarCarrito" />
+        <Label fx:id="lblMensaje" HBox.hgrow="ALWAYS" wrapText="true" />
+        <VBox alignment="CENTER_RIGHT" spacing="4" style="-fx-background-color: white; -fx-padding: 12 18 12 18; -fx-background-radius: 8;">
+            <HBox spacing="24"><Label text="Neto" /><Label fx:id="lblNeto" text="S/ 0.00" /></HBox>
+            <HBox spacing="24"><Label text="IGV (18%)" /><Label fx:id="lblIgv" text="S/ 0.00" /></HBox>
+            <HBox spacing="24"><Label text="Total" style="-fx-font-weight: bold;" />
+                <Label fx:id="lblTotal" text="S/ 0.00" style="-fx-font-weight: bold; -fx-text-fill: #006241;" />
+            </HBox>
+        </VBox>
+        <Button text="Registrar compra" onAction="#registrarCompra"
+                style="-fx-background-color: #1e3932; -fx-text-fill: white; -fx-font-weight: bold; -fx-padding: 12 18 12 18;" />
+    </HBox>
+    <padding><Insets top="0" right="0" bottom="0" left="0" /></padding>
+</VBox>
+

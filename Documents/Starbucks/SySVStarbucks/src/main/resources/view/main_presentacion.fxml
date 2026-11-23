@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox xmlns="http://javafx.com/javafx/21"
+      xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="pe.edu.upeu.sysvstarbucks.controller.PresentacionController"
+      spacing="14" style="-fx-background-color: #f5f4f0; -fx-padding: 20 24 20 24;">
+    <VBox spacing="5" style="-fx-background-color: white; -fx-padding: 16; -fx-background-radius: 8;">
+        <Label text="Personalizaciones de productos" style="-fx-font-size: 23px; -fx-font-weight: bold; -fx-text-fill: #1e3932;" />
+        <Label text="Configura opciones opcionales para cada bebida. Alto, Grande y Venti se mantienen fijos en ventas."
+               style="-fx-font-size: 13px; -fx-text-fill: #5b625f;" />
+    </VBox>
+
+    <HBox alignment="CENTER_LEFT" spacing="10" style="-fx-background-color: white; -fx-padding: 14; -fx-background-radius: 8;">
+        <Label text="Producto" />
+        <ComboBox fx:id="cmbProducto" promptText="Selecciona un producto" prefWidth="370" />
+        <Label text="Menú" />
+        <Label fx:id="lblMenu" text="—" style="-fx-font-weight: bold; -fx-text-fill: #1e3932;" />
+        <Label text="Precio base" />
+        <Label fx:id="lblPrecioBase" text="S/ 0.00" style="-fx-font-weight: bold;" />
+    </HBox>
+
+    <GridPane hgap="12" vgap="10" style="-fx-background-color: white; -fx-padding: 16; -fx-background-radius: 8;">
+        <Label text="Nombre de personalización" GridPane.columnIndex="0" GridPane.rowIndex="0" />
+        <TextField fx:id="txtNombre" promptText="Ej. Leche de avena" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+        <Label text="Cantidad medida" GridPane.columnIndex="2" GridPane.rowIndex="0" />
+        <TextField fx:id="txtCantidadMedida" promptText="Ej. 30" GridPane.columnIndex="3" GridPane.rowIndex="0" />
+        <Label text="Unidad" GridPane.columnIndex="0" GridPane.rowIndex="1" />
+        <ComboBox fx:id="cmbUnidad" promptText="Selecciona unidad" maxWidth="Infinity" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+        <Label text="Precio adicional (S/)" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+        <TextField fx:id="txtIncremento" promptText="Ej. 1.00" GridPane.columnIndex="3" GridPane.rowIndex="1" />
+        <HBox spacing="8" alignment="CENTER_LEFT" GridPane.columnIndex="0" GridPane.columnSpan="4" GridPane.rowIndex="2">
+            <Button fx:id="btnGuardar" text="Agregar personalización" onAction="#guardarPresentacion"
+                    style="-fx-background-color: #00704a; -fx-text-fill: white; -fx-font-weight: bold;" />
+            <Button text="Limpiar" onAction="#limpiarFormulario" />
+            <Button fx:id="btnEliminar" text="Quitar seleccionada" onAction="#eliminarPresentacion" />
+        </HBox>
+        <Label fx:id="lblMensaje" wrapText="true" GridPane.columnIndex="0" GridPane.columnSpan="4" GridPane.rowIndex="3" />
+        <columnConstraints>
+            <ColumnConstraints minWidth="140" prefWidth="170" />
+            <ColumnConstraints hgrow="ALWAYS" minWidth="170" prefWidth="260" />
+            <ColumnConstraints minWidth="145" prefWidth="180" />
+            <ColumnConstraints hgrow="ALWAYS" minWidth="170" prefWidth="240" />
+        </columnConstraints>
+    </GridPane>
+
+    <Label text="Personalizaciones registradas" style="-fx-font-size: 16px; -fx-font-weight: bold; -fx-text-fill: #1e3932;" />
+    <TableView fx:id="tablaPresentaciones" VBox.vgrow="ALWAYS">
+        <columns>
+            <TableColumn fx:id="colNombre" text="Personalización" prefWidth="220" />
+            <TableColumn fx:id="colCantidad" text="Medida" prefWidth="120" />
+            <TableColumn fx:id="colUnidad" text="Unidad" prefWidth="150" />
+            <TableColumn fx:id="colIncremento" text="Adicional (S/)" prefWidth="150" />
+            <TableColumn fx:id="colPrecioFinal" text="Precio con base (S/)" prefWidth="180" />
+        </columns>
+    </TableView>
+    <padding><Insets top="0" right="0" bottom="0" left="0" /></padding>
+</VBox>
+
+

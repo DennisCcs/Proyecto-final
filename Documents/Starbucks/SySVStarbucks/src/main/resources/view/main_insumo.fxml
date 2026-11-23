@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox xmlns="http://javafx.com/javafx/21"
+      xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="pe.edu.upeu.sysvstarbucks.controller.InsumoController"
+      spacing="14" style="-fx-background-color: #f5f4f0; -fx-padding: 20 24 20 24;">
+    <VBox spacing="5" style="-fx-background-color: white; -fx-padding: 16; -fx-background-radius: 8;">
+        <Label text="Gestión de insumos" style="-fx-font-size: 23px; -fx-font-weight: bold; -fx-text-fill: #1e3932;" />
+        <Label text="Administra los materiales que se compran para preparar bebidas y alimentos."
+               style="-fx-font-size: 13px; -fx-text-fill: #5b625f;" />
+    </VBox>
+
+    <HBox alignment="CENTER_LEFT" spacing="8"
+          style="-fx-background-color: #fff8e1; -fx-padding: 10 14 10 14; -fx-background-radius: 6;">
+        <Label text="RELACIÓN CON PROVEEDORES" style="-fx-font-weight: bold; -fx-text-fill: #795500;" />
+        <Label text="Cada insumo pertenece a un proveedor y paquete; su precio aparece precargado en Nueva compra."
+               style="-fx-text-fill: #795500;" />
+    </HBox>
+
+    <GridPane hgap="12" vgap="10" style="-fx-background-color: white; -fx-padding: 16; -fx-background-radius: 8;">
+        <Label text="Nombre del insumo" GridPane.columnIndex="0" GridPane.rowIndex="0" />
+        <TextField fx:id="txtNombre" promptText="Escribe para ver coincidencias" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+        <Label text="Unidad base" GridPane.columnIndex="2" GridPane.rowIndex="0" />
+        <ComboBox fx:id="cmbUnidad" promptText="Selecciona" maxWidth="Infinity" GridPane.columnIndex="3" GridPane.rowIndex="0" />
+        <Label text="Proveedor" GridPane.columnIndex="0" GridPane.rowIndex="1" />
+        <ComboBox fx:id="cmbProveedor" promptText="Selecciona proveedor" maxWidth="Infinity" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+        <Label text="Stock mínimo" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+        <TextField fx:id="txtStockMinimo" promptText="Ej. 500" GridPane.columnIndex="3" GridPane.rowIndex="1" />
+        <Label text="Paquete de compra" GridPane.columnIndex="0" GridPane.rowIndex="2" />
+        <TextField fx:id="txtNombrePaquete" promptText="Ej. Caja de 12 × 1 L" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+        <Label text="Contenido en unidad base" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+        <TextField fx:id="txtContenidoPaquete" promptText="Ej. 12000" GridPane.columnIndex="3" GridPane.rowIndex="2" />
+        <Label text="Precio por paquete (S/)" GridPane.columnIndex="0" GridPane.rowIndex="3" />
+        <TextField fx:id="txtPrecioPaquete" promptText="Ej. 66.00" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+        <Label text="Descripción" GridPane.columnIndex="2" GridPane.rowIndex="3" />
+        <TextArea fx:id="txtDescripcion" promptText="Uso del insumo" prefRowCount="2" wrapText="true"
+                  GridPane.columnIndex="3" GridPane.rowIndex="3" />
+        <HBox spacing="8" alignment="CENTER_LEFT" GridPane.columnIndex="0" GridPane.columnSpan="4" GridPane.rowIndex="4">
+            <Button fx:id="btnGuardar" text="Agregar insumo" onAction="#guardarInsumo"
+                    style="-fx-background-color: #00704a; -fx-text-fill: white; -fx-font-weight: bold;" />
+            <Button text="Limpiar" onAction="#limpiarFormulario" />
+            <Button text="Eliminar seleccionado" onAction="#eliminarInsumo" />
+        </HBox>
+        <Label fx:id="lblMensaje" wrapText="true" GridPane.columnIndex="0" GridPane.columnSpan="4" GridPane.rowIndex="5" />
+        <columnConstraints>
+            <ColumnConstraints minWidth="135" prefWidth="165" />
+            <ColumnConstraints hgrow="ALWAYS" minWidth="170" prefWidth="255" />
+            <ColumnConstraints minWidth="125" prefWidth="155" />
+            <ColumnConstraints hgrow="ALWAYS" minWidth="180" prefWidth="275" />
+        </columnConstraints>
+    </GridPane>
+
+    <HBox alignment="CENTER_LEFT" spacing="10">
+        <Label text="Buscar:" />
+        <TextField fx:id="txtBuscar" promptText="Nombre, unidad o descripción" prefWidth="340" />
+        <Label fx:id="lblConteo" HBox.hgrow="ALWAYS" />
+    </HBox>
+
+    <TableView fx:id="tablaInsumos" VBox.vgrow="ALWAYS">
+        <columns>
+            <TableColumn fx:id="colId" text="ID" prefWidth="60" />
+            <TableColumn fx:id="colNombre" text="Insumo" prefWidth="150" />
+            <TableColumn fx:id="colUnidad" text="Unidad" prefWidth="70" />
+            <TableColumn fx:id="colStock" text="Stock" prefWidth="90" />
+            <TableColumn fx:id="colMinimo" text="Mínimo" prefWidth="90" />
+            <TableColumn fx:id="colEstado" text="Estado" prefWidth="85" />
+            <TableColumn fx:id="colProveedor" text="Proveedor" prefWidth="160" />
+            <TableColumn fx:id="colPaquete" text="Paquete" prefWidth="175" />
+            <TableColumn fx:id="colPrecioPaquete" text="Precio paquete" prefWidth="110" />
+        </columns>
+        <placeholder><Label text="No hay insumos que coincidan con la búsqueda." /></placeholder>
+    </TableView>
+    <padding><Insets top="0" right="0" bottom="0" left="0" /></padding>
+</VBox>
+
+
